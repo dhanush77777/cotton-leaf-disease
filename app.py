@@ -1,27 +1,13 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Jun 11 22:34:20 2020
 
-@author: Krish Naik
-"""
 
 from __future__ import division, print_function
 # coding=utf-8
-import sys
 import os
-import glob
-import re
 import numpy as np
 import tensorflow as tf
 import tensorflow as tf
 
-from tensorflow.compat.v1 import ConfigProto
-from tensorflow.compat.v1 import InteractiveSession
-
-config = ConfigProto()
-config.gpu_options.per_process_gpu_memory_fraction = 0.2
-config.gpu_options.allow_growth = True
-session = InteractiveSession(config=config)
 # Keras
 from tensorflow.keras.applications.resnet50 import preprocess_input
 from tensorflow.keras.models import load_model
@@ -70,11 +56,8 @@ def model_predict(img_path, model):
         preds="The leaf is fresh cotton leaf"
     else:
         preds="The leaf is fresh cotton plant"
-        
-    
     
     return preds
-
 
 @app.route('/', methods=['GET'])
 def index():
@@ -98,8 +81,8 @@ def upload():
         preds = model_predict(file_path, model)
         result=preds
         return result
-        return render_template('index.html')
     return None
+
 
 
 if __name__ == '__main__':
